@@ -1,7 +1,7 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render
 from django.http import HttpResponse
 
 
 # Create your views here.
 def welcome(request):
-    return HttpResponse('awards')
+    return render(request, 'welcome.html')
