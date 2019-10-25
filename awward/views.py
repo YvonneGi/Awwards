@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Project,Profile,Rate
 from .forms import NewProjectForm,ProfileForm,RateForm
-import datetime as dt
+
 
 
 # Create your views here.

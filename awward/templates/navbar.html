@@ -14,7 +14,7 @@
     <div class="container-fluid">
       <div class="navbar-header">
         <div id='left'>
-          <a>Menu</a>
+          <a href="{%url 'welcome'%}">Menu</a>
           
         </div>
       </div>
@@ -32,7 +32,7 @@
       </div>
 
       <div id='right'>
-        <a class="mr-2" href="{% url 'profile'request.user.id %}">Register/Login</a>
+        <a class="mr-2" href="/accounts/register/">Register/Login</a>
         <a class="mr-2">Submit your site</a>
 
       </div>
