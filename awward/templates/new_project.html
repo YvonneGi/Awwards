@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+
+{% block content %}
+
+<div class="container">
+
+  <div class="text-center w-50 rounded border border-primary bg-white mx-auto">
+    <p class="border border-secondary bg-secondary text-white">Post your project</p>
+    <form  action="{%url 'new-project'%}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+
+        {% bootstrap_form form%}
+        <input type="submit" class="btn btn-success btn-lg" value="Project">
+    </form>
+  </div>
+
+</div>
+
+
+
+{% endblock %}
