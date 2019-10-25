@@ -24,7 +24,7 @@ def profile(request,id):
     return render(request, "profile.html", {"current_user":current_user,"projects":projects,"user":user,"user_object":user_object})
 
 @login_required(login_url='/accounts/login/')
-def new_profile(request):
+def new_project(request):
     current_user = Profile.objects.get(username__id=request.user.id)
     if request.method == 'POST':
         form = NewProjectForm(request.POST, request.FILES)
@@ -33,7 +33,6 @@ def new_profile(request):
             project.upload_by = current_user
             project.save()
         return redirect('welcome')
-
     else:
         form = NewProjectForm()
     return render(request, 'new_project.html', {"form": form})
