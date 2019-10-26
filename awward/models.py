@@ -44,6 +44,7 @@ class Project(models.Model):
     image = models.ImageField(upload_to = 'images/')
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=3000)
+    link = models.CharField(max_length=3000)
     upload_by = models.ForeignKey(Profile)
     post_date=models.DateTimeField(auto_now_add=True)
 

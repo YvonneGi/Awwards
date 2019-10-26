@@ -17,11 +17,13 @@
 
     <div class="col-md-3">
       <p class="mt-1 font-weight-bold font-italic">{{user.username.username}}</p>
-      
+
 
       {% if user == current_user %}
-      
-     
+      <a href="{% url 'edit-profile' %}">
+        <button class="btn btn-dark" type="button" name="button"><img
+            src="https://img.icons8.com/color/48/000000/pencil.png" width="24">Edit Profile</button>
+      </a>
       <p>{{user.fullname}}</p>
       <p>{{user.bio | safe}}</p>
       <a href="/logout/">
@@ -41,17 +43,15 @@
   </a>
   <br></br>
   {% endif %}
-  <p><strong>Projects:</strong></p> 
+  <p><strong>Projects:</strong></p>
   <div class="row">
     {% for project in projects %}
     <div class="col-md-4">
       <a href="{{project.image.url}}" data-fancybox="image"
-        data-buttons='["zoom","slideShow","fullScreen","thumbs","share","close"]' 
-        data-caption=
-        <p>{{project.upload_by.username}}</p>
+        data-buttons='["zoom","slideShow","fullScreen","thumbs","share","close"]' data-caption='<p>{{project.upload_by.username}}</p>
         <p>{{project.tittle}}</p>
         <p>{{project.description}}</p>
-        <p>{{project.post_date}}</p>
+        <p>{{project.post_date}}</p>'>
         <img src="{{project.image.url}}" alt="" width="300" height="200">
       </a>
     </div>

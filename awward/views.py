@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Project,Profile,Rate
 from .forms import NewProjectForm,ProfileForm,RateForm
+import datetime as dt
 
 
 
@@ -36,6 +37,30 @@ def new_project(request):
     else:
         form = NewProjectForm()
     return render(request, 'new_project.html', {"form": form})
+
+
+@login_required(login_url='/accounts/login/')
+def edit_profile(request):
+    current_user=request.user
+    user_edit = Profile.objects.get(username__id=current_user.id)
+    if request.method =='POST':
+        form=ProfileForm(request.POST,request.FILES,instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+                   
+    else:
+        form=ProfileForm(instance=request.user.profile)
+     
+    return render(request,'edit_profile.html',locals())
+
+@login_required(login_url='/accounts/login/')
+def search_results(request):
+    if 'search' in request.GET and request.GET["search"]:
+        search_term = request.GET.get("search")
+        searched_projects = Project.search_project(search_term)
+        message=f"Search results for: {search_term}"
+
+        return render(request,'search.html',{"message":message,"projects":searched_projects})
 
    
 
