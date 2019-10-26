@@ -78,5 +78,10 @@ class Rate(models.Model):
 
     def save_rate(self):
         self.save()
+class ProfileMerch(models.Model):
+    profile_pic = models.ImageField(upload_to='photos/',null=True)
+    username = models.CharField(max_length=40)
+    bio = models.CharField(max_length=3000)
+    projects = models.DecimalField(decimal_places=2, max_digits=20)
 
    

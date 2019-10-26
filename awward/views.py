@@ -5,6 +5,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from .models import Project,Profile,Rate
 from .forms import NewProjectForm,ProfileForm,RateForm
 import datetime as dt
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import  ProfileMerch
+from .serializer import MerchSerializer
 
 
 
@@ -61,6 +65,12 @@ def search_results(request):
         message=f"Search results for: {search_term}"
 
         return render(request,'search.html',{"message":message,"projects":searched_projects})
+
+class MerchList(APIView):
+    def get(self, request, format=None):
+        all_merch = ProfileMerch.objects.all()
+        serializers = MerchSerializer(all_merch, many=True)
+        return Response(serializers.data)
 
    
 
