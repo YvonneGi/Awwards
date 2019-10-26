@@ -7,8 +7,7 @@ from .forms import NewProjectForm,ProfileForm,RateForm
 import datetime as dt
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import  ProfileMerch
-from .serializer import MerchSerializer
+from .serializer import ProfileSerializer,ProjectSerializer
 from rest_framework import status
 
 
@@ -67,13 +66,17 @@ def search_results(request):
 
         return render(request,'search.html',{"message":message,"projects":searched_projects})
 
-class MerchList(APIView):
-    def post(self, request, format=None):
-        serializers = MerchSerializer(data=request.data)
-        if serializers.is_valid():
-            serializers.save()
-            return Response(serializers.data, status=status.HTTP_201_CREATED)
-        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        all_merch = Profile.objects.all()
+        serializers = ProfileSerializer(all_merch, many=True)
+        return Response(serializers.data)
+
+class ProjectList(APIView):
+    def get(self, request, format=None):
+        all_merch = Project.objects.all()
+        serializers = ProjectSerializer(all_merch, many=True)
+        return Response(serializers.data)
 
 
 

@@ -46,7 +46,7 @@ class Project(models.Model):
     description = models.CharField(max_length=3000)
     link = models.CharField(max_length=3000)
     upload_by = models.ForeignKey(Profile)
-    post_date=models.DateTimeField(auto_now_add=True)
+    post_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
@@ -78,10 +78,6 @@ class Rate(models.Model):
 
     def save_rate(self):
         self.save()
-class ProfileMerch(models.Model):
-    profile_pic = models.ImageField(upload_to='photos/',null=True)
-    username = models.CharField(max_length=40)
-    bio = models.CharField(max_length=3000)
-    projects = models.DecimalField(decimal_places=2, max_digits=20)
+
 
    
