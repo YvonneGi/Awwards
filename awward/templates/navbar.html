@@ -8,13 +8,25 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
+<style>
+  body {
+     margin-top: 2px;
+     background: transparent;
+   }
+ .nav-icon {
+     width: 26px;
+     margin-right: 20px;
+   }
+
+ 
+ </style>
 
 <body>
   <nav class="navbar navbar-dark bg-light " role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
         <div id='left'>
-          <a href="{%url 'welcome'%}">Menu</a>
+          <a href="{%url 'welcome'%}">Home</a>
           
         </div>
       </div>
@@ -32,8 +44,10 @@
       </div>
 
       <div id='right'>
-        <a class="mr-2" href="/accounts/register/">Register/Login</a>
-        <a class="mr-2">Submit your site</a>
+        <a class="mr-2" href="/accounts/register/">Register</a>
+        <a class="mr-2" href="/accounts/login/">Login</a>
+        <!-- <a class="mr-2" href="/accounts/register/">Submit your site</a> -->
+        <a class="mr-2" href="{% url 'profile' request.user.id %}"><img src='https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1' class='nav-icon'></a>
 
       </div>
     </div>
