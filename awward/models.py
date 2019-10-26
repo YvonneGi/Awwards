@@ -63,7 +63,7 @@ class Project(models.Model):
         ''' Method to delete an image from the database'''
         self.delete()
 
-   @classmethod
+    @classmethod
     def search_project(cls,search_term):
         project = cls.objects.filter(title__icontains=search_term)
         return project
