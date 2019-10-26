@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+
+{% block content %}
+
+<div class="container">
+
+  <h3 class="text-center mt-5"><u>{{project.title}}</u></h3>
+  <a href="{{project.link}}"><p class="text-center mt-2">{{project.link}}</p></a>
+  <p class="text-center mt-2">{{project.description}}</p>
+  <div class="text-center mt-3">
+    <a href="{{project.landing_image.url}}">
+      <img src="{{project.landing_image.url}}" alt="" width="50%" height="50%">
+    </a>
+  </div>
+  <div class="text-center mt-3">
+    {% if project.screen_one %}
+    <p>Screenshot 1</p>
+    <a href="{{project.screen_one.url}}">
+      <img src="{{project.screen_one.url}}" alt="" width="25%" height="25%">
+    </a>
+    {% endif %}
+    {% if project.screen_two %}
+    <p>Screenshot 2</p>
+    <a href="{{project.screen_two.url}}">
+      <img src="{{project.screen_two.url}}" alt="" width="25%" height="25%">
+    </a>
+    {% endif %}
+  </div>
+  <p class="text-center mt-2">Technologies: {{project.technologies}}</p>
+  <br>
+  <hr>
+  <h4 class="m-2"><u>Score</u></h4>
+  <p>Usability: {{av_usability}}</p>
+  <p>Design: {{av_design}}</p>
+  <p>Creativity: {{av_creativity}}</p>
+  <p>Content: {{av_content}}</p>
+  <p>Average score: {{av_score}}</p>
+  <hr>
+  <h4 class="m-2"><u>Comments</u></h4>
+  {% for rating in ratings %}
+  <p>{{rating.user.username}}: {{rating.comment}}</p>
+  {% endfor %}
+  <hr>
+
+  {% if not has_rated %}
+  <h4 class="mt-2"><u>Rate the project</u></h4>
+  <form action="{%url 'project' project.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token%}
+    {% bootstrap_form form %}
+    <div class="form-group text-center">
+      <input type="submit" class="btn btn-success btn-lg" value="Rate">
+    </div>
+  </form>
+  {% endif %}
+</div>
+
+
+{% endblock %}

@@ -24,3 +24,6 @@ class RateForm(forms.ModelForm):
         model = Rate
         exclude=['username','project','control']
 
+
+        
+
