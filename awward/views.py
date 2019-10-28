@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import ProfileSerializer,ProjectSerializer
 from rest_framework import status
+from .serializer import ProfileSerializer,ProjectSerializer
 from .permissions import IsAdminOrReadOnly
 
 
@@ -43,6 +44,20 @@ def new_project(request):
         form = NewProjectForm()
     return render(request, 'new_project.html', {"form": form})
 
+@login_required(login_url='/accounts/login/')
+def project(request,id):
+    show_user = request.user
+    project = Project.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = RateForm(request.POST)
+        if form.is_valid():
+            ratez = form.save(commit=False)
+            ratez.save()
+            return redirect('project', project.id)
+    else:
+        form = RateForm()
+    return render(request,'project.html',{"project":project,"show_user":show_user,"form":form})
 
 @login_required(login_url='/accounts/login/')
 def edit_profile(request):

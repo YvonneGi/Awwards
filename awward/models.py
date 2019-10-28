@@ -67,6 +67,13 @@ class Project(models.Model):
     def search_project(cls,search_term):
         project = cls.objects.filter(title__icontains=search_term)
         return project
+    @classmethod
+    def all_projects(cls):
+        all_projects = cls.objects.all()
+        return all_projects
+
+    def get_one_project(self, post_id):
+        return self.objects.get(pk=post_id)
 
 class Rate(models.Model):
     username = models.ForeignKey(User,on_delete=models.CASCADE)

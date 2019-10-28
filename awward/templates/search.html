@@ -20,7 +20,7 @@
             <img src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" class="rounded img-fluid" alt=""  width="75px" height="75px">
           {% endif %}
           <div class="search-username-center">
-            <p class="username profile-username"style="margin:auto;"><a href="{% url 'new-project'%}" style="color:black;"> {{project.title}}</a></p>
+            <p class="username profile-username"style="margin:auto;"><a href="{% url 'project' project.id%}" style="color:black;"> {{project.title}}</a></p>
           </div>
         </div>
 
