@@ -31,6 +31,20 @@ def profile(request,id):
     return render(request, "profile.html", {"current_user":current_user,"projects":projects,"user":user,"user_object":user_object})
 
 @login_required(login_url='/accounts/login/')
+def edit_profile(request):
+    current_user=request.user
+    user_edit = Profile.objects.get(username__id=current_user.id)
+    if request.method =='POST':
+        form=ProfileForm(request.POST,request.FILES,instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+                   
+    else:
+        form=ProfileForm(instance=request.user.profile)
+     
+    return render(request,'edit_profile.html',locals())
+
+@login_required(login_url='/accounts/login/')
 def new_project(request):
     current_user = Profile.objects.get(username__id=request.user.id)
     if request.method == 'POST':
@@ -59,19 +73,6 @@ def project(request,id):
         form = RateForm()
     return render(request,'project.html',{"project":project,"show_user":show_user,"form":form})
 
-@login_required(login_url='/accounts/login/')
-def edit_profile(request):
-    current_user=request.user
-    user_edit = Profile.objects.get(username__id=current_user.id)
-    if request.method =='POST':
-        form=ProfileForm(request.POST,request.FILES,instance=request.user.profile)
-        if form.is_valid():
-            form.save()
-                   
-    else:
-        form=ProfileForm(instance=request.user.profile)
-     
-    return render(request,'edit_profile.html',locals())
 
 @login_required(login_url='/accounts/login/')
 def search_results(request):
@@ -86,7 +87,7 @@ class ProfileList(APIView):
     # permission_classes = (IsAdminOrReadOnly,)
     def get(self, request, format=None):
         all_profiles = Profile.objects.all()
-        serializers = ProfileSerializer(all_merch, many=True)
+        serializers = ProfileSerializer(all_profiles, many=True)
         return Response(serializers.data)
 
     def post(self, request, format=None):
@@ -100,7 +101,7 @@ class ProjectList(APIView):
     # permission_classes = (IsAdminOrReadOnly,)
     def get(self, request, format=None):
         all_projects = Project.objects.all()
-        serializers = ProjectSerializer(all_merch, many=True)
+        serializers = ProjectSerializer(all_projects, many=True)
         return Response(serializers.data)
 
     def post(self, request, format=None):
