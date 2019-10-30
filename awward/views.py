@@ -9,7 +9,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import ProfileSerializer,ProjectSerializer
 from rest_framework import status
-from .serializer import ProfileSerializer,ProjectSerializer
 # from .permissions import IsAdminOrReadOnly
 
 
@@ -19,7 +18,7 @@ def welcome(request):
     projects = Project.objects.all().order_by("-id")
     profiles= Profile.objects.all()
     current_user = request.user
-    return render(request, 'welcome.html',{"projects":projects,"profiles":profiles,"current_user":current_user,})
+    return render(request, 'welcome.html',{"projects":projects,"profiles":profiles,"current_user":current_user})
 
 @login_required(login_url='/accounts/login/')
 def profile(request,id):
@@ -38,7 +37,8 @@ def edit_profile(request):
         form=ProfileForm(request.POST,request.FILES,instance=request.user.profile)
         if form.is_valid():
             form.save()
-                   
+            return redirect('welcome')
+                 
     else:
         form=ProfileForm(instance=request.user.profile)
      
@@ -83,6 +83,7 @@ def search_results(request):
 
         return render(request,'search.html',{"message":message,"projects":searched_projects})
 
+
 class ProfileList(APIView):
     # permission_classes = (IsAdminOrReadOnly,)
     def get(self, request, format=None):
@@ -96,6 +97,7 @@ class ProfileList(APIView):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class ProjectList(APIView):
     # permission_classes = (IsAdminOrReadOnly,)
