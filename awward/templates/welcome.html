@@ -23,7 +23,7 @@
   <hr>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-12" style="background-color:grey;margin-top: -3%;">
+      <div class="col-md-12" style="background-image:url(https://ak9.picdn.net/shutterstock/videos/714559/thumb/1.jpg);margin-top: -3%;width: 100px;">
         <h4 style="margin-left: 40%"><u>Score</u></h4>
         <p style="margin-left: 40%">Design: {{av_design}}</p>
         <p style="margin-left: 40%">Usability: {{av_content}}</p>
@@ -37,13 +37,13 @@
 
         <div class="col-md-12 col-md-offset-1 col-sm-12">
           <div class="uk-card uk-card-default uk-card-body uk-width-25-2@m" style="margin-bottom: 5px;">
-            <img style=" margin-top: 10px; margin-bottom: 5px;width:350px; height:200px;" src="{{project.image.url}}"
+            <img style=" margin-top: 10px; margin-bottom: 5px;width:400px; height:200px;" src="{{project.image.url}}"
               class="img-thumbnail photo" alt="Image" data-toggle="modal" data-target="#{{image.id}}">
             <hr class="uk-divider-icon">
             <div class="search-title-center">
               <h5 class="uk-card-title" style="color: black;font-family: 'Acme', sans-serif;text-align: center;">{{project.title}}</h5>
 
-              <p style="color:blue;text-align: center;"><a href="{% url 'project' project.id%}" >Click&See details</a></p>  
+              <p style="color:black;text-align: center;background-color: aqua;"><a href="{% url 'project' project.id%}" >View details</a></p>  
             </div>
           </div>
         </div>
