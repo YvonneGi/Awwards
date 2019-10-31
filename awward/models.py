@@ -46,7 +46,7 @@ class Project(models.Model):
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=3000)
     link = models.CharField(max_length=3000)
-    upload_by = models.ForeignKey(Profile)
+    upload_by = models.ForeignKey(Profile,null=True)
     post_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

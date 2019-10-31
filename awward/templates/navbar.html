@@ -57,7 +57,7 @@
         <div id='right'>
           <a class="mr-2" href="/accounts/register/" style="color:black;text-decoration: none;font-family: 'Acme', sans-serif;">Register</a>
           <a class="mr-2" href="/accounts/login/" style="color:black;text-decoration: none;font-family: 'Acme', sans-serif;">Login</a>
-          <a class="mr-2" href="{%url 'profile' request.user.id%}">
+          <a class="mr-2" href="{% url 'profile' request.user.id %}">
             {% if user.profile.profile_pic %}
             <img style="border-radius:50%;" src="{{user.profile.profile_pic.url}}" alt="" width="70" height="70">
             {% else %}
@@ -68,7 +68,6 @@
           </a>
         </div>
       </div>
-  
     </nav>
   </body>
   

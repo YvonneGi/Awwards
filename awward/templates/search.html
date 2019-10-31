@@ -8,21 +8,21 @@
 
   {% if projects %}
   <div class="text-center">
-    <div class="card search-card" style="width: 40rem;">
+    <div class="card search-card" style="width: 30rem;">
       
       <div class="card-body">
         {% for project in projects %}
 
         <div class="users-image">
           {% if project.image %}
-            <img src="{{project.image.url}}" class="rounded img-fluid" alt=""  width="50%" height="50%">
+            <img src="{{project.image.url}}"  alt=""  width="50%" height="50%">
           {% else %}
             <img src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" class="rounded img-fluid" alt=""  width="75px" height="75px">
           {% endif %}
           <div class="search-title-center">
-            <p class="title project-title"style="margin:auto;"> {{project.title}}</p>
+            <p class="title project-title"style="margin:auto;font-family: 'Acme', sans-serif"> {{project.title}}</p>
             <br>
-            <a href="{% url 'project' project.id%}" style="color:black;">View details</a>
+            <a href="{% url 'project' project.id%}" style="color:blue;background-color:#D9DCDC;font-family: 'Acme', sans-serif">View details</a>
           </div>
         </div>
 
