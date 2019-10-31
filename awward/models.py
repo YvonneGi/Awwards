@@ -13,6 +13,10 @@ class Profile(models.Model):
     bio = HTMLField(null=True)
     email = models.EmailField(null=True)
     phone_number = models.CharField(max_length=255)
+    design = models.IntegerField(choices=list(zip(range(0, 11), range(0, 11))), default=0)
+    usability = models.IntegerField(choices=list(zip(range(0, 11), range(0, 11))), default=0)
+    content = models.IntegerField(choices=list(zip(range(0, 11), range(0, 11))), default=0)
+    Score = models.IntegerField(default=0)
 
     def __str__(self):
         return self.username
@@ -45,7 +49,7 @@ class Project(models.Model):
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=3000)
     link = models.CharField(max_length=3000)
-    upload_by = models.ForeignKey(Profile)
+    upload_by = models.ForeignKey(Profile,null=True)
     post_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

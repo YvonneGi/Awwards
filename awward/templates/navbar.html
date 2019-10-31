@@ -18,27 +18,29 @@
     width: 26px;
     margin-right: 20px;
   }
- 
 </style>
 
 <body>
-  <nav class="navbar navbar-dark bg-light " role="navigation">
+  <nav class="navbar navbar-dark bg-light sticky-top" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
         <div id='left'>
-         
+
           <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                  <a href="{%url 'welcome'%}" style="color:black;text-decoration: none;">
-                    <img src="https://image.flaticon.com/icons/svg/60/60817.svg" alt="" width="30px" height="35px" style="margin-right:20px;margin-left: -10px;"></a>
-                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">View API</button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="{%url 'project'%}">Project API</a>
-                  <a class="dropdown-item" href="{%url 'profile'%}">Profile API</a>
-      
-                </div>
+            <div class="input-group-prepend">
+              <a href="{%url 'welcome'%}" style="color:black;text-decoration: none;">
+                <img src="https://image.flaticon.com/icons/svg/60/60817.svg" alt="" width="30px" height="35px"
+                  style="margin-right:20px;margin-left: -10px;"></a>
+              <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">View API</button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{%url 'projectAPI'%}">Project API</a>
+                <a class="dropdown-item" href="{%url 'profileAPI'%}">Profile API</a>
+
               </div>
             </div>
+          </div>
+
+
         </div>
       </div>
       <form class="navbar-form navbar-left" action="{% url 'search_results'%}">
@@ -58,9 +60,16 @@
         <a class="mr-2" href="/accounts/register/" style="color:black;text-decoration: none;">Register</a>
         <a class="mr-2" href="/accounts/login/" style="color:black;text-decoration: none;">Login</a>
         <!-- <a class="mr-2" href="/accounts/register/">Submit your site</a> -->
-        <a class="mr-2" href="{% url 'profile' request.user.id %}"><img
+        <a class="mr-2" href="{% url 'profile' request.user.id%}">
+          {% if user.profile.profile_pic %}
+          <img style="border-radius:50%;" src="{{user.profile.profile_pic.url}}" class="rounded img-fluid" alt="" width="70" height="70">
+          {% else %}
+          <img
             src='https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1'
-            class='nav-icon'></a>
+            class='nav-icon'>
+          {% endif %}
+        </a>
+
 
       </div>
     </div>

@@ -20,11 +20,12 @@
   </div>
   <br>
   <hr>
-  <h4 class="m-2"><u>Score</u></h4>
-  <p>Design: {{av_design}}</p>
-  <p>Creativity: {{av_creativity}}</p>
-  <p>Content: {{av_content}}</p>
-  <p>Average score: {{av_score}}</p>
+  <a href="{% url 'rating' project.id %}">Score</a>
+  <p>Design: {{project.design}}</p>
+  <p>Creativity: {{project.usability}}</p>
+  <p>Content: {{project.content}}</p>
+  <!-- <p>Average score: {{av_score}}</p> -->
+  <p>By <span>{{project.user.username}}</span><span>{{rating}}</span></p>
   <hr>
   {% if not has_rated %}
   <h4 class="mt-2"><u>Rate the project</u></h4>

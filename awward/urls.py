@@ -10,8 +10,9 @@ urlpatterns=[
     url(r'^new/project/', views.new_project, name = 'new-project'),
     url(r'^project/(\d+)', views.project, name = 'project'),
     url(r'^search/', views.search_results, name='search_results'),
-    url(r'^api/profile/$', views.ProfileList.as_view(),name='profile'),
-    url(r'^api/project/$', views.ProjectList.as_view(),name='project')
+    url(r'^api/profileAPI/$', views.ProfileList.as_view(),name='profileAPI'),
+    url(r'^api/projectAPI/$', views.ProjectList.as_view(),name='projectAPI'),
+    url(r'^rate/(?P<id>\d+)',views.rating,name='rating'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
