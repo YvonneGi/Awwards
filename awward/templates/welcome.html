@@ -7,12 +7,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
   <title>Awards</title>
   {% block styles %} {% bootstrap_css %} {% endblock %}
 
 </head>
+<style>
+p{
+  font-family: 'Acme', sans-serif;
+  color: black;
+}
+
+</style>
 
 
 
@@ -24,16 +30,17 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12" style="background-image:url(https://ak9.picdn.net/shutterstock/videos/714559/thumb/1.jpg);margin-top: -3%;height: 300px;">
-        <h4 style="margin-left: 40%"><u>Score</u></h4>
-        <p style="margin-left: 40%">Design: {{av_design}}</p>
-        <p style="margin-left: 40%">Usability: {{av_content}}</p>
-        <p style="margin-left: 40%">Content: {{av_content}}</p>
-        <p style="margin-left: 40%">Average score: {{av_score}}</p>
+        <br>
+        <h4 style="margin-left: 40%;font-family: 'Acme', sans-serif;"><u>Score</u></h4>
+        <p style="margin-left: 40%;font-family: 'Acme', sans-serif;">Design: {{av_design}}</p>
+        <p style="margin-left: 40%;font-family: 'Acme', sans-serif;">Usability: {{av_content}}</p>
+        <p style="margin-left: 40%;font-family: 'Acme', sans-serif;">Content: {{av_content}}</p>
+        <p style="margin-left: 40%;font-family: 'Acme', sans-serif;">Average score: {{av_score}}</p>
 
       </div>
 
       {% for project in projects %}
-      <div class="col-md-3">
+      <div class="col-md-4">
 
         <div class="col-md-12 col-md-offset-1 col-sm-12">
           <div class="uk-card uk-card-default uk-card-body uk-width-25-2@m" style="margin-bottom: 5px;">
@@ -43,7 +50,7 @@
             <div class="search-title-center">
               <h5 class="uk-card-title" style="color: black;font-family: 'Acme', sans-serif;text-align: center;">{{project.title}}</h5>
 
-              <p style="color:black;text-align: center;background-color:gray"><a href="{% url 'project' project.id%}" >View details</a></p>  
+              <p style="font-family: 'Acme', sans-serif;;text-align: center;background-color:gray"><a href="{% url 'project' project.id%}" >View details</a></p>  
             </div>
           </div>
         </div>
