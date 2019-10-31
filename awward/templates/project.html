@@ -18,25 +18,10 @@
   </div>
   <div class="text-center mt-3">
   </div>
-  <br>
   <hr>
-  <a href="{% url 'rating' project.id %}">Score</a>
-  <p>Design: {{project.design}}</p>
-  <p>Creativity: {{project.usability}}</p>
-  <p>Content: {{project.content}}</p>
-  <!-- <p>Average score: {{av_score}}</p> -->
-  <p>By <span>{{project.user.username}}</span><span>{{rating}}</span></p>
-  <hr>
-  {% if not has_rated %}
-  <h4 class="mt-2"><u>Rate the project</u></h4>
-  <form action="{%url 'project' project.id %}" method="post" enctype="multipart/form-data">
-    {% csrf_token%}
-    {% bootstrap_form form %}
-    <div class="form-group text-center">
-      <input type="submit" class="btn btn-success btn-lg" value="Rate">
-    </div>
-  </form>
-  {% endif %}
+  <button class="btn btn-success" type="button" name="button">Vote</button>
+  
+ 
 </div>
 
 
