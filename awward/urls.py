@@ -12,7 +12,7 @@ urlpatterns=[
     url(r'^search/', views.search_results, name='search_results'),
     url(r'^api/profileAPI/$', views.ProfileList.as_view(),name='profileAPI'),
     url(r'^api/projectAPI/$', views.ProjectList.as_view(),name='projectAPI'),
-    url(r'^rate/(?P<id>\d+)',views.rating,name='rating'),
+    # url(r'^vote/(?P<id>\d+)',views.rate,name='rate'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
