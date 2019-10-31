@@ -6,23 +6,22 @@
 
 <div class="container">
 
-  <h3 class="text-center mt-5"><u>{{project.title}}</u></h3>
+  <h3 class="text-center mt-5" style="font-family: 'Acme', sans-serif;"><u>{{project.title}}</u></h3>
   <a href="{{project.link}}">
-    <p class="text-center mt-2">{{project.link}}</p>
+    <p class="text-center mt-2" style="font-family: 'Acme', sans-serif;">{{project.link}}</p>
   </a>
-  <p class="text-center mt-2">{{project.description}}</p>
   <div class="text-center mt-3">
     <a href="{{project.image.url}}">
       <img src="{{project.image.url}}" alt="" width="50%" height="50%">
     </a>
   </div>
+  <p class="text-center mt-2" style="font-family: 'Acme', sans-serif;">{{project.description}}</p>
+  <p class="text-center mt-2" style="font-family: 'Acme', sans-serif;">Post on: {{project.post_date}}</p>
+  <p class="text-center mt-2" style="font-family: 'Acme', sans-serif;">Upload_by: {{project.upload_by.username}}</p>      
   <div class="text-center mt-3">
   </div>
-
   <hr>
-  <!-- <button class="btn btn-success" type="button" name="button"> -->
-  
- 
+  <!-- <button class="btn btn-success" type="button" name="button" style="text-align: center;">Vote</button> -->
 </div>
 
 
