@@ -62,7 +62,6 @@ def new_project(request):
 def project(request,id):
     show_user = request.user
     project = Project.objects.get(id=id)
-
     if request.method == 'POST':
         form = RateForm(request.POST)
         if form.is_valid():
@@ -72,8 +71,7 @@ def project(request,id):
     else:
         form = RateForm()
     return render(request,'project.html',{"project":project,"show_user":show_user,"form":form})
-
-
+    
 @login_required(login_url='/accounts/login/')
 def search_results(request):
     if 'search' in request.GET and request.GET["search"]:
