@@ -79,10 +79,12 @@ class Project(models.Model):
 class Rate(models.Model):
     username = models.ForeignKey(User,on_delete=models.CASCADE)
     project = models.ForeignKey(Project,on_delete=models.CASCADE)
-    control = models.CharField(max_length=50,unique=True, null=True)
     usability = models.IntegerField(default=0,)
     design = models.IntegerField(default=0,)
     content = models.IntegerField(default=0,)
+    total=models.IntegerField()
+    avg=models.IntegerField(null=True)
+    comment=models.TextField(null=True
 
     def __str__(self):
         return self.control
