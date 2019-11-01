@@ -14,8 +14,9 @@ from rest_framework import status
 
 
 # Create your views here.
+@login_required(login_url='/accounts/login/')
 def welcome(request):
-    projects = Project.objects.all().order_by("-id")
+    projects= Project.objects.all().order_by("-id")
     profiles= Profile.objects.all()
     current_user = request.user
     return render(request, 'welcome.html',{"projects":projects,"profiles":profiles,"current_user":current_user})
@@ -110,3 +111,21 @@ class ProjectList(APIView):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@login_required(login_url='/accounts/login/')
+def grade_project(request,id):
+     current_user=request.user
+     project=Project.objects.get(id=id)
+     if request.method == 'POST':
+        form = GradeForm(request.POST, request.FILES)
+        if form.is_valid():
+            grade = form.save(commit=False)
+            grade.user = current_user
+            grade.project=project
+            grade.total=int(form.cleaned_data['design'])+int(form.cleaned_data['content'])+int(form.cleaned_data['usability'])
+            grade.avg= int(grade.total)/3
+            grade.save()
+        return redirect('home')
+     else:
+        form = GradeForm()
+     return render(request, 'AW/grade.html', {"form": form, 'proj':project})
