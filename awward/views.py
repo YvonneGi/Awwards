@@ -127,5 +127,5 @@ def grade_project(request,id):
             grade.save()
         return redirect('welcome')
      else:
-        form = GradeForm()
+        form = RateForm()
      return render(request, 'vote.html', {"form": form, 'project':project})
