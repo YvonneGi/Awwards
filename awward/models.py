@@ -84,7 +84,7 @@ class Rate(models.Model):
     content = models.IntegerField(default=0,)
     total=models.IntegerField()
     avg=models.IntegerField(null=True)
-    comment=models.TextField(null=True
+    comment=models.TextField(null=True)
 
     def __str__(self):
         return self.control
