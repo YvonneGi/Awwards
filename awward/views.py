@@ -117,7 +117,7 @@ def grade_project(request,id):
      current_user=request.user
      project=Project.objects.get(id=id)
      if request.method == 'POST':
-        form = GradeForm(request.POST, request.FILES)
+        form = RateForm(request.POST, request.FILES)
         if form.is_valid():
             grade = form.save(commit=False)
             grade.user = current_user
