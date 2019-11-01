@@ -125,7 +125,7 @@ def grade_project(request,id):
             grade.total=int(form.cleaned_data['design'])+int(form.cleaned_data['content'])+int(form.cleaned_data['usability'])
             grade.avg= int(grade.total)/3
             grade.save()
-        return redirect('home')
+        return redirect('welcome')
      else:
         form = GradeForm()
-     return render(request, 'AW/grade.html', {"form": form, 'proj':project})
+     return render(request, 'vote.html', {"form": form, 'project':project})

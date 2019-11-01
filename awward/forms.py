@@ -15,7 +15,7 @@ class NewProjectForm(forms.ModelForm):
 class RateForm(forms.ModelForm):
     class Meta:
         model = Project
-        exclude=['usability','design','content']
+        exclude=['username','project','total','avg']
 
 
         
