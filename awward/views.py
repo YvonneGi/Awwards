@@ -14,7 +14,6 @@ from rest_framework import status
 
 
 # Create your views here.
-@login_required(login_url='/accounts/login/')
 def welcome(request):
     projects = Project.objects.all().order_by("-id")
     profiles= Profile.objects.all()
