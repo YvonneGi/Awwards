@@ -5,7 +5,7 @@ from .models import *
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude=['']
+        exclude=['username']
 
 class NewProjectForm(forms.ModelForm):
     class Meta:
