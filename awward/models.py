@@ -48,6 +48,7 @@ class Project(models.Model):
     link = models.CharField(max_length=3000)
     upload_by = models.ForeignKey(Profile,null=True)
     post_date = models.DateTimeField(auto_now_add=True)
+    view_grade=models.IntegerField(null=True)
 
     def __str__(self):
         return self.title
@@ -76,16 +77,15 @@ class Project(models.Model):
     def get_one_project(self, post_id):
         return self.objects.get(pk=post_id)
 
-class Rate(models.Model):
-    username = models.ForeignKey(User,on_delete=models.CASCADE)
-    project = models.ForeignKey(Project,on_delete=models.CASCADE)
-    usability = models.IntegerField(default=0,)
-    design = models.IntegerField(default=0,)
-    content = models.IntegerField(default=0,)
+class Grade(models.Model):
+    design=models.IntegerField()
+    usability=models.IntegerField()
+    content=models.IntegerField()
+    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    project=models.ForeignKey(Project)
     total=models.IntegerField()
     avg=models.IntegerField(null=True)
     comment=models.TextField(null=True)
-
     def __str__(self):
         return self.comment
 

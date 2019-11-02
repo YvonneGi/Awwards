@@ -2,8 +2,8 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-from .models import Project,Profile,Rate
-from .forms import NewProjectForm,ProfileForm,RateForm
+from .models import Project,Profile,Grade
+from .forms import NewProjectForm,ProfileForm,GradeForm
 import datetime as dt
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -19,7 +19,8 @@ def welcome(request):
     projects= Project.objects.all().order_by("-id")
     profiles= Profile.objects.all()
     current_user = request.user
-    return render(request, 'welcome.html',{"projects":projects,"profiles":profiles,"current_user":current_user})
+    grade= Review.objects.all()
+    return render(request, 'welcome.html',{"projects":projects,"profiles":profiles,"current_user":current_user,"grade":grade})
 
 @login_required(login_url='/accounts/login/')
 def profile(request,id):
@@ -65,15 +66,8 @@ def new_project(request):
 def project(request,id):
     show_user = request.user
     project = Project.objects.get(id=id)
-    if request.method == 'POST':
-        form = RateForm(request.POST)
-        if form.is_valid():
-            ratez = form.save(commit=False)
-            ratez.save()
-            return redirect('project', project.id)
-    else:
-        form = RateForm()
-    return render(request,'project.html',{"project":project,"show_user":show_user,"form":form})
+  
+    return render(request,'project.html',{"project":project,"show_user":show_user})
     
 @login_required(login_url='/accounts/login/')
 def search_results(request):
@@ -86,10 +80,10 @@ def search_results(request):
 
 @login_required(login_url='/accounts/login/')
 def grade_project(request,id):
-     current_user=request.user
-     project=Project.objects.get(id=id)
-     if request.method == 'POST':
-        form = RateForm(request.POST, request.FILES)
+    current_user=request.user
+    project=Project.objects.get(id=id)
+    if request.method == 'POST':
+        form = GradeForm(request.POST, request.FILES)
         if form.is_valid():
             grade = form.save(commit=False)
             grade.user = current_user
@@ -98,10 +92,9 @@ def grade_project(request,id):
             grade.avg= int(grade.total)/3
             grade.save()
         return redirect('welcome')
-     else:
-        form = RateForm()
-     return render(request, 'grade.html',locals())
-
+    else:
+        form = GradeForm()
+    return render(request, 'grade.html',{"form": form, 'proj':project})
 
 class ProfileList(APIView):
     # permission_classes = (IsAdminOrReadOnly,)
