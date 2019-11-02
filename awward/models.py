@@ -86,6 +86,9 @@ class Rate(models.Model):
     avg=models.IntegerField(null=True)
     comment=models.TextField(null=True)
 
+    def __str__(self):
+        return self.comment
+
 
     def save_rate(self):
         self.save()
